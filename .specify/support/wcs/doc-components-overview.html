@@ -1,0 +1,473 @@
+<!DOCTYPE html><html lang="en" class="hydrated"><head><meta charset="utf-8"><style data-styles="">slot-fb{display:contents}slot-fb[hidden]{display:none}wcs-editable-field,wcs-grid-pagination,wcs-alert-drawer,wcs-horizontal-stepper,wcs-breadcrumb,wcs-counter,wcs-grid,wcs-modal,wcs-dropdown,wcs-galactic-menu,wcs-input,wcs-textarea,wcs-accordion,wcs-accordion-content,wcs-accordion-header,wcs-accordion-panel,wcs-action-bar,wcs-app,wcs-badge,wcs-breadcrumb-item,wcs-card,wcs-card-body,wcs-card-content,wcs-card-footer,wcs-card-header,wcs-card-media,wcs-chip,wcs-com-nav,wcs-com-nav-category,wcs-com-nav-item,wcs-com-nav-submenu,wcs-divider,wcs-dropdown-divider,wcs-dropdown-header,wcs-dropdown-item,wcs-field,wcs-field-content,wcs-field-label,wcs-footer,wcs-galactic,wcs-grid-column,wcs-grid-custom-cell,wcs-header,wcs-hint,wcs-icon,wcs-list-item,wcs-list-item-properties,wcs-list-item-property,wcs-native-select,wcs-nav,wcs-nav-item,wcs-progress-radial,wcs-radio,wcs-radio-group,wcs-skeleton-circle,wcs-skeleton-rectangle,wcs-skeleton-text,wcs-switch,wcs-tab,wcs-tabs,wcs-tooltip,wcs-alert,wcs-progress-bar,wcs-checkbox,wcs-select-option,wcs-select,wcs-error,wcs-form-field,wcs-label,wcs-mat-icon,wcs-button,wcs-spinner{visibility:hidden}.hydrated{visibility:inherit}</style><title>documentation-components-overview--documentation</title><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="prefetch" href="./sb-common-assets/nunito-sans-regular.woff2" as="font" type="font/woff2" crossorigin=""><link rel="prefetch" href="./sb-common-assets/nunito-sans-italic.woff2" as="font" type="font/woff2" crossorigin=""><link rel="prefetch" href="./sb-common-assets/nunito-sans-bold.woff2" as="font" type="font/woff2" crossorigin=""><link rel="prefetch" href="./sb-common-assets/nunito-sans-bold-italic.woff2" as="font" type="font/woff2" crossorigin=""><link rel="stylesheet" href="./sb-common-assets/fonts.css"><base target="_parent"><style>/* While we aren't showing the main block yet, but still preparing, we want everything the user
+     has rendered, which may or may not be in #storybook-root, to be display none */
+  .sb-show-preparing-story:not(.sb-show-main) > :not(.sb-preparing-story) {
+    display: none;
+  }
+
+  .sb-show-preparing-docs:not(.sb-show-main) > :not(.sb-preparing-docs) {
+    display: none;
+  }
+
+  /* Hide our own blocks when we aren't supposed to be showing them */
+  :not(.sb-show-preparing-story) > .sb-preparing-story,
+  :not(.sb-show-preparing-docs) > .sb-preparing-docs,
+  :not(.sb-show-nopreview) > .sb-nopreview,
+  :not(.sb-show-errordisplay) > .sb-errordisplay {
+    display: none;
+  }
+
+  .sb-show-main.sb-main-centered {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .sb-show-main.sb-main-centered #storybook-root {
+    box-sizing: border-box;
+    margin: auto;
+    padding: 1rem;
+    max-height: 100%; /* Hack for centering correctly in IE11 */
+  }
+
+  /* Vertical centering fix for IE11 */
+  @media screen and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .sb-show-main.sb-main-centered:after {
+      content: '';
+      min-height: inherit;
+      font-size: 0;
+    }
+  }
+
+  .sb-show-main.sb-main-fullscreen {
+    margin: 0;
+    padding: 0;
+    display: block;
+  }
+
+  .sb-show-main.sb-main-padded {
+    margin: 0;
+    padding: 1rem;
+    display: block;
+    box-sizing: border-box;
+  }
+
+  .sb-wrapper {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    font-family: 'Nunito Sans', -apple-system, '.SFNSText-Regular', 'San Francisco',
+      BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow: auto;
+  }
+
+  .sb-heading {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    margin: 10px 0;
+    padding-right: 25px;
+  }
+
+  .sb-nopreview {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+  }
+
+  .sb-nopreview_main {
+    margin: auto;
+    padding: 30px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.03);
+  }
+
+  .sb-nopreview_heading {
+    text-align: center;
+  }
+
+  .sb-errordisplay {
+    border: 20px solid rgb(187, 49, 49);
+    background: #222;
+    color: #fff;
+    z-index: 999999;
+  }
+
+  .sb-errordisplay_code {
+    padding: 10px;
+    background: #000;
+    color: #eee;
+    font-family: 'Operator Mono', 'Fira Code Retina', 'Fira Code', 'FiraCode-Retina', 'Andale Mono',
+      'Lucida Console', Consolas, Monaco, monospace;
+  }
+
+  .sb-errordisplay pre {
+    white-space: pre-wrap;
+  }
+
+  @-webkit-keyframes sb-rotate360 {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes sb-rotate360 {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes sb-glow {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+  @keyframes sb-glow {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+  /* We display the preparing loaders *over* the rendering story */
+  .sb-preparing-story,
+  .sb-preparing-docs {
+    background-color: white;
+    /* Maximum possible z-index. It would be better to use stacking contexts to ensure it's always
+    on top, but this isn't possible as it would require making CSS changes that could affect user code */
+    z-index: 2147483647;
+  }
+
+  .sb-loader {
+    -webkit-animation: sb-rotate360 0.7s linear infinite;
+    animation: sb-rotate360 0.7s linear infinite;
+    border-color: rgba(97, 97, 97, 0.29);
+    border-radius: 50%;
+    border-style: solid;
+    border-top-color: #646464;
+    border-width: 2px;
+    display: inline-block;
+    height: 32px;
+    left: 50%;
+    margin-left: -16px;
+    margin-top: -16px;
+    mix-blend-mode: difference;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    transition: all 200ms ease-out;
+    vertical-align: top;
+    width: 32px;
+    z-index: 4;
+  }
+
+  .sb-previewBlock {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 1px 3px 0;
+    margin: 25px auto 40px;
+    max-width: 600px;
+  }
+
+  .sb-previewBlock_header {
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 -1px 0 0 inset;
+    display: flex;
+    gap: 14px;
+    height: 40px;
+    padding: 0 12px;
+  }
+
+  .sb-previewBlock_icon {
+    -webkit-animation: sb-glow 1.5s ease-in-out infinite;
+    animation: sb-glow 1.5s ease-in-out infinite;
+    background: #e6e6e6;
+    height: 14px;
+    width: 14px;
+  }
+  .sb-previewBlock_icon:last-child {
+    margin-left: auto;
+  }
+
+  .sb-previewBlock_body {
+    -webkit-animation: sb-glow 1.5s ease-in-out infinite;
+    animation: sb-glow 1.5s ease-in-out infinite;
+    height: 182px;
+    position: relative;
+  }
+
+  .sb-argstableBlock {
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 13px;
+    line-height: 20px;
+    margin: 25px auto 40px;
+    max-width: 600px;
+    text-align: left;
+    width: 100%;
+  }
+  .sb-argstableBlock th:first-of-type,
+  .sb-argstableBlock td:first-of-type {
+    padding-left: 20px;
+  }
+  .sb-argstableBlock th:nth-of-type(2),
+  .sb-argstableBlock td:nth-of-type(2) {
+    width: 35%;
+  }
+  .sb-argstableBlock th:nth-of-type(3),
+  .sb-argstableBlock td:nth-of-type(3) {
+    width: 15%;
+  }
+  .sb-argstableBlock th:last-of-type,
+  .sb-argstableBlock td:last-of-type {
+    width: 25%;
+    padding-right: 20px;
+  }
+  .sb-argstableBlock th span,
+  .sb-argstableBlock td span {
+    -webkit-animation: sb-glow 1.5s ease-in-out infinite;
+    animation: sb-glow 1.5s ease-in-out infinite;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    box-shadow: none;
+    color: transparent;
+  }
+  .sb-argstableBlock th {
+    padding: 10px 15px;
+  }
+
+  .sb-argstableBlock-body {
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 1px 3px 1px, rgba(0, 0, 0, 0.065) 0 0 0 1px;
+  }
+  .sb-argstableBlock-body tr {
+    background: transparent;
+    overflow: hidden;
+  }
+  .sb-argstableBlock-body tr:not(:first-child) {
+    border-top: 1px solid #e6e6e6;
+  }
+  .sb-argstableBlock-body tr:first-child td:first-child {
+    border-top-left-radius: 4px;
+  }
+  .sb-argstableBlock-body tr:first-child td:last-child {
+    border-top-right-radius: 4px;
+  }
+  .sb-argstableBlock-body tr:last-child td:first-child {
+    border-bottom-left-radius: 4px;
+  }
+  .sb-argstableBlock-body tr:last-child td:last-child {
+    border-bottom-right-radius: 4px;
+  }
+  .sb-argstableBlock-body td {
+    background: #fff;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    vertical-align: top;
+  }
+  .sb-argstableBlock-body td:not(:first-of-type) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .sb-argstableBlock-body button {
+    -webkit-animation: sb-glow 1.5s ease-in-out infinite;
+    animation: sb-glow 1.5s ease-in-out infinite;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    color: transparent;
+    display: inline;
+    font-size: 12px;
+    line-height: 1;
+    padding: 10px 16px;
+  }
+
+  .sb-argstableBlock-summary {
+    margin-top: 4px;
+  }
+
+  .sb-argstableBlock-code {
+    margin-right: 4px;
+    margin-bottom: 4px;
+    padding: 2px 5px;
+  }</style><script>/* globals window */
+  /* eslint-disable no-underscore-dangle */
+  try {
+    if (window.top !== window) {
+      window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = window.top.__REACT_DEVTOOLS_GLOBAL_HOOK__;
+      window.__VUE_DEVTOOLS_GLOBAL_HOOK__ = window.top.__VUE_DEVTOOLS_GLOBAL_HOOK__;
+      window.top.__VUE_DEVTOOLS_CONTEXT__ = window.document;
+    }
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.warn('unable to connect to top frame for connecting dev tools');
+  }</script><style>@font-face {
+        font-family: Avenir;
+        src: url("avenir-lighter.woff");
+        font-weight: 100;
+    }
+
+    @font-face {
+        font-family: Avenir;
+        src: url("avenir-book.woff");
+        font-weight: 300;
+    }
+
+    @font-face {
+        font-family: Avenir;
+        src: url("avenir-roman.woff");
+        font-weight: 400;
+    }
+
+    @font-face {
+        font-family: Avenir;
+        src: url("avenir-medium.woff");
+        font-weight: 500;
+    }
+
+    @font-face {
+        font-family: Avenir;
+        src: url("avenir-heavy.woff");
+        font-weight: 800;
+    }
+
+    @font-face {
+        font-family: Avenir;
+        src: url("avenir-black.woff");
+        font-weight: 900;
+    }
+    @font-face {
+        font-family: "icons";
+        src: url("icons/icons.eot?#iefix") format("embedded-opentype"),
+        url("icons/icons.woff2") format("woff2"),
+        url("icons/icons.woff") format("woff"),
+        url("icons/icons.ttf") format("truetype"),
+        url("icons/icons.svg#icons") format("svg");
+    }
+
+    @font-face {
+        font-family: 'Material Icons';
+        font-style: normal;
+        font-weight: 400;
+        src: url(https://fonts.gstatic.com/s/materialicons/v139/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+    }
+    @font-face {
+        font-family: 'Material Icons Outlined';
+        font-style: normal;
+        font-weight: 400;
+        src: url(https://fonts.gstatic.com/s/materialiconsoutlined/v108/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUce.woff2) format('woff2');
+    }
+    @font-face {
+        font-family: 'Material Icons Two Tone';
+        font-style: normal;
+        font-weight: 400;
+        src: url(https://fonts.gstatic.com/s/materialiconstwotone/v111/hESh6WRmNCxEqUmNyh3JDeGxjVVyMg4tHGctNCu0.woff2) format('woff2');
+    }
+    @font-face {
+        font-family: 'Material Icons Round';
+        font-style: normal;
+        font-weight: 400;
+        src: url(https://fonts.gstatic.com/s/materialiconsround/v107/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmP.woff2) format('woff2');
+    }
+    @font-face {
+        font-family: 'Material Icons Sharp';
+        font-style: normal;
+        font-weight: 400;
+        src: url(https://fonts.gstatic.com/s/materialiconssharp/v108/oPWQ_lt5nv4pWNJpghLP75WiFR4kLh3kvmvR.woff2) format('woff2');
+    }</style><link rel="stylesheet" href="./wcs.css"><link rel="stylesheet" href="./sncf-holding.css"><link rel="stylesheet" href="./sncf-voyageurs.css"><link rel="stylesheet" href="./sncf-reseau.css"><link rel="stylesheet" href="./sncf-groupe.css"><script type="module" src="./wcs.esm.js"></script><script nomodule="" src="./wcs.js"></script><link rel="shortcut icon" href="/sncf-logo.png"><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><style>#storybook-root[hidden],
+      #storybook-docs[hidden] {
+        display: none !important;
+      }</style><style id="storybookHighlight"></style><style data-emotion="css" data-s="">.css-zgt7u1{background:#FFFFFF;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;padding:4rem 20px;min-height:100vh;box-sizing:border-box;}</style><style data-emotion="css" data-s="">@media (min-width: 600px){}</style><style data-emotion="css" data-s="">.css-qa4clq{max-width:1000px;width:100%;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(a:not(.sb-anchor, .sb-unstyled, .sb-unstyled a)){font-family:"Nunito Sans",-apple-system,".SFNSText-Regular","San Francisco",BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:inherit;margin:0;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-overflow-scrolling:touch;line-height:24px;color:#029CFD;-webkit-text-decoration:none;text-decoration:none;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(a:not(.sb-anchor, .sb-unstyled, .sb-unstyled a)).absent{color:#cc0000;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(a:not(.sb-anchor, .sb-unstyled, .sb-unstyled a)).anchor{display:block;padding-left:30px;margin-left:-30px;cursor:pointer;position:absolute;top:0;left:0;bottom:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(blockquote:not(.sb-anchor, .sb-unstyled, .sb-unstyled blockquote)){font-family:"Nunito Sans",-apple-system,".SFNSText-Regular","San Francisco",BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:16px;margin:16px 0;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-overflow-scrolling:touch;border-left:4px solid #D9E8F2;padding:0 15px;color:#5C6870;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(blockquote:not(.sb-anchor, .sb-unstyled, .sb-unstyled blockquote))>:first-of-type{margin-top:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(blockquote:not(.sb-anchor, .sb-unstyled, .sb-unstyled blockquote))>:last-child{margin-bottom:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(div:not(.sb-anchor, .sb-unstyled, .sb-unstyled div)){font-family:"Nunito Sans",-apple-system,".SFNSText-Regular","San Francisco",BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:16px;margin:0;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-overflow-scrolling:touch;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(dl:not(.sb-anchor, .sb-unstyled, .sb-unstyled dl)){font-family:"Nunito Sans",-apple-system,".SFNSText-Regular","San Francisco",BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:16px;margin:16px 0;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-overflow-scrolling:touch;padding:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(dl:not(.sb-anchor, .sb-unstyled, .sb-unstyled dl)) dt{font-size:14px;font-weight:bold;font-style:italic;padding:0;margin:16px 0 4px;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(dl:not(.sb-anchor, .sb-unstyled, .sb-unstyled dl)) dt:first-of-type{padding:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(dl:not(.sb-anchor, .sb-unstyled, .sb-unstyled dl)) dt>:first-of-type{margin-top:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(dl:not(.sb-anchor, .sb-unstyled, .sb-unstyled dl)) dt>:last-child{margin-bottom:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(dl:not(.sb-anchor, .sb-unstyled, .sb-unstyled dl)) dd{margin:0 0 16px;padding:0 15px;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(dl:not(.sb-anchor, .sb-unstyled, .sb-unstyled dl)) dd>:first-of-type{margin-top:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(dl:not(.sb-anchor, .sb-unstyled, .sb-unstyled dl)) dd>:last-child{margin-bottom:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h1:not(.sb-anchor, .sb-unstyled, .sb-unstyled h1)){font-family:"Nunito Sans",-apple-system,".SFNSText-Regular","San Francisco",BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:32px;margin:20px 0 8px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-overflow-scrolling:touch;padding:0;cursor:text;position:relative;color:#2E3438;font-weight:700;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h1:not(.sb-anchor, .sb-unstyled, .sb-unstyled h1)):first-of-type{margin-top:0;padding-top:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h1:not(.sb-anchor, .sb-unstyled, .sb-unstyled h1)):hover a.anchor{-webkit-text-decoration:none;text-decoration:none;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h1:not(.sb-anchor, .sb-unstyled, .sb-unstyled h1)) code{font-size:inherit;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h2:not(.sb-anchor, .sb-unstyled, .sb-unstyled h2)){font-family:"Nunito Sans",-apple-system,".SFNSText-Regular","San Francisco",BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:24px;margin:20px 0 8px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-overflow-scrolling:touch;padding:0;cursor:text;position:relative;color:#2E3438;padding-bottom:4px;border-bottom:1px solid hsla(203, 50%, 30%, 0.15);}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h2:not(.sb-anchor, .sb-unstyled, .sb-unstyled h2)):first-of-type{margin-top:0;padding-top:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h2:not(.sb-anchor, .sb-unstyled, .sb-unstyled h2)):hover a.anchor{-webkit-text-decoration:none;text-decoration:none;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h2:not(.sb-anchor, .sb-unstyled, .sb-unstyled h2)) code{font-size:inherit;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h3:not(.sb-anchor, .sb-unstyled, .sb-unstyled h3)){font-family:"Nunito Sans",-apple-system,".SFNSText-Regular","San Francisco",BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:20px;margin:20px 0 8px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-overflow-scrolling:touch;padding:0;cursor:text;position:relative;color:#2E3438;font-weight:700;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h3:not(.sb-anchor, .sb-unstyled, .sb-unstyled h3)):first-of-type{margin-top:0;padding-top:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h3:not(.sb-anchor, .sb-unstyled, .sb-unstyled h3)):hover a.anchor{-webkit-text-decoration:none;text-decoration:none;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h3:not(.sb-anchor, .sb-unstyled, .sb-unstyled h3)) code{font-size:inherit;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h4:not(.sb-anchor, .sb-unstyled, .sb-unstyled h4)){font-family:"Nunito Sans",-apple-system,".SFNSText-Regular","San Francisco",BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:16px;margin:20px 0 8px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-overflow-scrolling:touch;padding:0;cursor:text;position:relative;color:#2E3438;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h4:not(.sb-anchor, .sb-unstyled, .sb-unstyled h4)):first-of-type{margin-top:0;padding-top:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h4:not(.sb-anchor, .sb-unstyled, .sb-unstyled h4)):hover a.anchor{-webkit-text-decoration:none;text-decoration:none;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h4:not(.sb-anchor, .sb-unstyled, .sb-unstyled h4)) code{font-size:inherit;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h5:not(.sb-anchor, .sb-unstyled, .sb-unstyled h5)){font-family:"Nunito Sans",-apple-system,".SFNSText-Regular","San Francisco",BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;margin:20px 0 8px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-overflow-scrolling:touch;padding:0;cursor:text;position:relative;color:#2E3438;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h5:not(.sb-anchor, .sb-unstyled, .sb-unstyled h5)):first-of-type{margin-top:0;padding-top:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h5:not(.sb-anchor, .sb-unstyled, .sb-unstyled h5)):hover a.anchor{-webkit-text-decoration:none;text-decoration:none;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h5:not(.sb-anchor, .sb-unstyled, .sb-unstyled h5)) code{font-size:inherit;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h6:not(.sb-anchor, .sb-unstyled, .sb-unstyled h6)){font-family:"Nunito Sans",-apple-system,".SFNSText-Regular","San Francisco",BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;margin:20px 0 8px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-overflow-scrolling:touch;padding:0;cursor:text;position:relative;color:#5C6870;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h6:not(.sb-anchor, .sb-unstyled, .sb-unstyled h6)):first-of-type{margin-top:0;padding-top:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h6:not(.sb-anchor, .sb-unstyled, .sb-unstyled h6)):hover a.anchor{-webkit-text-decoration:none;text-decoration:none;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(h6:not(.sb-anchor, .sb-unstyled, .sb-unstyled h6)) code{font-size:inherit;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(hr:not(.sb-anchor, .sb-unstyled, .sb-unstyled hr)){border:0 none;border-top:1px solid hsla(203, 50%, 30%, 0.15);height:4px;padding:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(img:not(.sb-anchor, .sb-unstyled, .sb-unstyled img)){max-width:100%;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(li:not(.sb-anchor, .sb-unstyled, .sb-unstyled li)){font-family:"Nunito Sans",-apple-system,".SFNSText-Regular","San Francisco",BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;margin:0;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-overflow-scrolling:touch;color:#2E3438;line-height:24px;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(li:not(.sb-anchor, .sb-unstyled, .sb-unstyled li))+li{margin-top:.25em;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(li:not(.sb-anchor, .sb-unstyled, .sb-unstyled li)) ul,.css-qa4clq :where(li:not(.sb-anchor, .sb-unstyled, .sb-unstyled li)) ol{margin-top:.25em;margin-bottom:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(li:not(.sb-anchor, .sb-unstyled, .sb-unstyled li)) code{line-height:1;margin:0 2px;padding:3px 5px;white-space:nowrap;border-radius:3px;font-size:13px;border:1px solid #ECF4F9;color:rgba(46,52,56,0.9);background-color:#F7FAFC;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(ol:not(.sb-anchor, .sb-unstyled, .sb-unstyled ol)){font-family:"Nunito Sans",-apple-system,".SFNSText-Regular","San Francisco",BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:16px;margin:16px 0;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-overflow-scrolling:touch;padding-left:30px;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(ol:not(.sb-anchor, .sb-unstyled, .sb-unstyled ol)) :first-of-type{margin-top:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(ol:not(.sb-anchor, .sb-unstyled, .sb-unstyled ol)) :last-child{margin-bottom:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)){font-family:"Nunito Sans",-apple-system,".SFNSText-Regular","San Francisco",BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;margin:16px 0;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-overflow-scrolling:touch;line-height:24px;color:#2E3438;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)) code{line-height:1;margin:0 2px;padding:3px 5px;white-space:nowrap;border-radius:3px;font-size:13px;border:1px solid #ECF4F9;color:rgba(46,52,56,0.9);background-color:#F7FAFC;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(pre:not(.sb-anchor, .sb-unstyled, .sb-unstyled pre)){font-family:ui-monospace,Menlo,Monaco,"Roboto Mono","Oxygen Mono","Ubuntu Monospace","Source Code Pro","Droid Sans Mono","Courier New",monospace;font-size:16px;margin:1rem 0;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-overflow-scrolling:touch;line-height:18px;padding:11px 1rem;white-space:pre-wrap;color:inherit;border-radius:3px;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(pre:not(.sb-anchor, .sb-unstyled, .sb-unstyled pre)):not(.prismjs){background:transparent;border:none;border-radius:0;padding:0;margin:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(pre:not(.sb-anchor, .sb-unstyled, .sb-unstyled pre)) pre,.css-qa4clq :where(pre:not(.sb-anchor, .sb-unstyled, .sb-unstyled pre)).prismjs{padding:15px;margin:0;white-space:pre-wrap;color:inherit;font-size:13px;line-height:19px;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(pre:not(.sb-anchor, .sb-unstyled, .sb-unstyled pre)) pre code,.css-qa4clq :where(pre:not(.sb-anchor, .sb-unstyled, .sb-unstyled pre)).prismjs code{color:inherit;font-size:inherit;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(pre:not(.sb-anchor, .sb-unstyled, .sb-unstyled pre)) code{white-space:pre;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(pre:not(.sb-anchor, .sb-unstyled, .sb-unstyled pre)) code,.css-qa4clq :where(pre:not(.sb-anchor, .sb-unstyled, .sb-unstyled pre)) tt{border:none;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(span:not(.sb-anchor, .sb-unstyled, .sb-unstyled span)){font-family:"Nunito Sans",-apple-system,".SFNSText-Regular","San Francisco",BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:16px;margin:0;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-overflow-scrolling:touch;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(span:not(.sb-anchor, .sb-unstyled, .sb-unstyled span)).frame{display:block;overflow:hidden;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(span:not(.sb-anchor, .sb-unstyled, .sb-unstyled span)).frame>span{border:1px solid #D9E8F2;display:block;float:left;overflow:hidden;margin:13px 0 0;padding:7px;width:auto;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(span:not(.sb-anchor, .sb-unstyled, .sb-unstyled span)).frame span img{display:block;float:left;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(span:not(.sb-anchor, .sb-unstyled, .sb-unstyled span)).frame span span{clear:both;color:#2E3438;display:block;padding:5px 0 0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(span:not(.sb-anchor, .sb-unstyled, .sb-unstyled span)).align-center{display:block;overflow:hidden;clear:both;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(span:not(.sb-anchor, .sb-unstyled, .sb-unstyled span)).align-center>span{display:block;overflow:hidden;margin:13px auto 0;text-align:center;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(span:not(.sb-anchor, .sb-unstyled, .sb-unstyled span)).align-center span img{margin:0 auto;text-align:center;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(span:not(.sb-anchor, .sb-unstyled, .sb-unstyled span)).align-right{display:block;overflow:hidden;clear:both;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(span:not(.sb-anchor, .sb-unstyled, .sb-unstyled span)).align-right>span{display:block;overflow:hidden;margin:13px 0 0;text-align:right;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(span:not(.sb-anchor, .sb-unstyled, .sb-unstyled span)).align-right span img{margin:0;text-align:right;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(span:not(.sb-anchor, .sb-unstyled, .sb-unstyled span)).float-left{display:block;margin-right:13px;overflow:hidden;float:left;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(span:not(.sb-anchor, .sb-unstyled, .sb-unstyled span)).float-left span{margin:13px 0 0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(span:not(.sb-anchor, .sb-unstyled, .sb-unstyled span)).float-right{display:block;margin-left:13px;overflow:hidden;float:right;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(span:not(.sb-anchor, .sb-unstyled, .sb-unstyled span)).float-right>span{display:block;overflow:hidden;margin:13px auto 0;text-align:right;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(table:not(.sb-anchor, .sb-unstyled, .sb-unstyled table)){font-family:"Nunito Sans",-apple-system,".SFNSText-Regular","San Francisco",BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;margin:16px 0;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-overflow-scrolling:touch;line-height:24px;padding:0;border-collapse:collapse;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(table:not(.sb-anchor, .sb-unstyled, .sb-unstyled table)) tr{border-top:1px solid hsla(203, 50%, 30%, 0.15);margin:0;padding:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(table:not(.sb-anchor, .sb-unstyled, .sb-unstyled table)) tr:nth-of-type(2n){background-color:#F7FAFC;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(table:not(.sb-anchor, .sb-unstyled, .sb-unstyled table)) tr th{font-weight:bold;color:#2E3438;border:1px solid hsla(203, 50%, 30%, 0.15);margin:0;padding:6px 13px;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(table:not(.sb-anchor, .sb-unstyled, .sb-unstyled table)) tr td{border:1px solid hsla(203, 50%, 30%, 0.15);color:#2E3438;margin:0;padding:6px 13px;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(table:not(.sb-anchor, .sb-unstyled, .sb-unstyled table)) tr th :first-of-type,.css-qa4clq :where(table:not(.sb-anchor, .sb-unstyled, .sb-unstyled table)) tr td :first-of-type{margin-top:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(table:not(.sb-anchor, .sb-unstyled, .sb-unstyled table)) tr th :last-child,.css-qa4clq :where(table:not(.sb-anchor, .sb-unstyled, .sb-unstyled table)) tr td :last-child{margin-bottom:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(ul:not(.sb-anchor, .sb-unstyled, .sb-unstyled ul)){font-family:"Nunito Sans",-apple-system,".SFNSText-Regular","San Francisco",BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:16px;margin:16px 0;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-overflow-scrolling:touch;padding-left:30px;list-style:disc;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(ul:not(.sb-anchor, .sb-unstyled, .sb-unstyled ul)) :first-of-type{margin-top:0;}</style><style data-emotion="css" data-s="">.css-qa4clq :where(ul:not(.sb-anchor, .sb-unstyled, .sb-unstyled ul)) :last-child{margin-bottom:0;}</style><style data-emotion="css" data-s="">.css-ajfpqr{font-family:"Nunito Sans",-apple-system,".SFNSText-Regular","San Francisco",BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:16px;margin:0;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-overflow-scrolling:touch;font-size:inherit;line-height:24px;color:#029CFD;-webkit-text-decoration:none;text-decoration:none;}</style><style data-emotion="css" data-s="">.css-ajfpqr.absent{color:#cc0000;}</style><style data-emotion="css" data-s="">.css-ajfpqr.anchor{display:block;padding-left:30px;margin-left:-30px;cursor:pointer;position:absolute;top:0;left:0;bottom:0;}</style></head><body class="sncf-holding sb-show-main sb-main-fullscreen"><div class="sb-preparing-story sb-wrapper"><div class="sb-loader"></div></div><div class="sb-preparing-docs sb-wrapper"><div class="sb-previewBlock"><div class="sb-previewBlock_header"><div class="sb-previewBlock_icon"></div><div class="sb-previewBlock_icon"></div><div class="sb-previewBlock_icon"></div><div class="sb-previewBlock_icon"></div></div><div class="sb-previewBlock_body"><div class="sb-loader"></div></div></div><table aria-hidden="true" class="sb-argstableBlock"><thead class="sb-argstableBlock-head"><tr><th><span>Name</span></th><th><span>Description</span></th><th><span>Default</span></th><th><span>Control</span></th></tr></thead><tbody class="sb-argstableBlock-body"><tr><td><span>propertyName</span><span title="Required">*</span></td><td><div><span>This is a short description</span></div><div class="sb-argstableBlock-summary"><div><span class="sb-argstableBlock-code">summary</span></div></div></td><td><div><span class="sb-argstableBlock-code">defaultValue</span></div></td><td><button>Set string</button></td></tr><tr><td><span>propertyName</span><span>*</span></td><td><div><span>This is a short description</span></div><div class="sb-argstableBlock-summary"><div><span class="sb-argstableBlock-code">summary</span></div></div></td><td><div><span class="sb-argstableBlock-code">defaultValue</span></div></td><td><button>Set string</button></td></tr><tr><td><span>propertyName</span><span>*</span></td><td><div><span>This is a short description</span></div><div class="sb-argstableBlock-summary"><div><span class="sb-argstableBlock-code">summary</span></div></div></td><td><div><span class="sb-argstableBlock-code">defaultValue</span></div></td><td><button>Set string</button></td></tr></tbody></table></div><div class="sb-nopreview sb-wrapper"><div class="sb-nopreview_main"><h1 class="sb-nopreview_heading sb-heading">No Preview</h1><p>Sorry, but you either have no stories or none are selected somehow.</p><ul><li>Please check the Storybook config.</li><li>Try reloading the page.</li></ul><p>If the problem persists, check the browser console, or the terminal you've run Storybook from.</p></div></div><div class="sb-errordisplay sb-wrapper"><pre id="error-message" class="sb-heading"></pre><pre class="sb-errordisplay_code"><code id="error-stack"></code></pre></div><div id="storybook-root" hidden="true"></div><div id="storybook-docs"><div class="sbdocs sbdocs-wrapper css-zgt7u1"><div class="sbdocs sbdocs-content css-qa4clq"><style>
+            a:focus {
+              outline: 2px dashed var(--wcs-semantic-color-border-focus-base);
+            }
+            .grid-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 12px;
+            }
+            .img-container {
+                display: flex;
+                height: calc(100% - 24px);
+                margin: var(--wcs-semantic-spacing-base) 0;
+                & > img {
+                    margin: auto;
+                    max-height: 150px;
+                    display: block;
+                }
+            }
+            .display-card {
+                height: 200px;
+                background-clip: border-box;
+                border-radius: var(--wcs-semantic-border-radius-base);
+                border: solid 1px var(--wcs-semantic-color-border-secondary);
+                flex: 1 0 25%;
+                padding: var(--wcs-semantic-spacing-large);
+                & > p {
+                    margin: 0;
+                    font-weight: 700;
+                    font-size: 1rem;
+                }
+                &:hover {
+                    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .12), 0 1px 5px 0 rgba(0, 0, 0, .20)
+                }
+            }
+            .divider {
+                display: block;
+                border-bottom: solid 1px var(--wcs-semantic-color-border-secondary);
+            }
+            .spinner-container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+                justify-items: center;
+            }
+        </style><div class="grid-container"><a href="../?path=/docs/components-accordion--documentation#storybook-docs" aria-label="Accordion" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Accordion</b><div class="divider"></div><div class="img-container"><img alt="Accordion preview" src="components-overview/accordion.png"></div></div></a><a href="../?path=/docs/components-actionbar--documentation#storybook-docs" aria-label="Actionbar" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Actionbar (business)</b><div class="divider"></div><div class="img-container"><img alt="Actionbar preview" src="components-overview/actionbar.png"></div></div></a><a href="../?path=/docs/components-alert--documentation#storybook-docs" aria-label="Alert" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Alert</b><div class="divider"></div><div class="img-container"><img alt="Alert preview" src="components-overview/alert.png"></div></div></a><a href="../?path=/docs/components-alert-drawer--documentation#storybook-docs" aria-label="Alert-Drawer" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>AlertDrawer</b><div class="divider"></div><div class="img-container"><img alt="Alert-Drawer preview" src="components-overview/alert-drawer.png"></div></div></a><a href="../?path=/docs/components-badge--documentation#storybook-docs" aria-label="Badge" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Badge</b><div class="divider"></div><div class="img-container"><img alt="Badge preview" src="components-overview/badge.png"></div></div></a><a href="../?path=/docs/components-breadcrumb--documentation#storybook-docs" aria-label="Breadcrumb" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Breadcrumb</b><div class="divider"></div><div class="img-container"><img alt="Breadcrumb preview" src="components-overview/breadcrumb.png"></div></div></a><a href="../?path=/docs/components-button--documentation#storybook-docs" aria-label="Button" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Button</b><div class="divider"></div><div class="img-container"><img alt="Button preview" src="components-overview/button.png"></div></div></a><a href="../?path=/docs/components-card--documentation#storybook-docs" aria-label="Card" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Card</b><div class="divider"></div><div class="img-container"><img alt="Card preview" src="components-overview/card.png"></div></div></a><a href="../?path=/docs/components-checkbox--documentation#storybook-docs" aria-label="Checkbox" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Checkbox</b><div class="divider"></div><div class="img-container"><img alt="Checkbox preview" src="components-overview/checkbox.png"></div></div></a><a href="../?path=/docs/components-chip--documentation#storybook-docs" aria-label="Chip" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Chip</b><div class="divider"></div><div class="img-container"><img alt="Chip preview" src="components-overview/chip.png"></div></div></a><a href="./?path=/docs/components-ds-communication-nav--documentation#storybook-docs" aria-label="Com-Nav" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Com-Nav (communication)</b><div class="divider"></div><div class="img-container"><img alt="Com-Nav preview" src="components-overview/com-nav.png"></div></div></a><a href="../?path=/docs/components-counter--documentation#storybook-docs" aria-label="Counter" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Counter</b><div class="divider"></div><div class="img-container"><img alt="Counter preview" src="components-overview/counter.png"></div></div></a><a href="../?path=/docs/components-divider--documentation#storybook-docs" aria-label="Divider" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Divider</b><div class="divider"></div><div class="img-container"><img alt="Divider preview" src="components-overview/divider.png"></div></div></a><a href="../?path=/docs/components-dropdown--documentation#storybook-docs" aria-label="Dropdown" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Dropdown</b><div class="divider"></div><div class="img-container"><img alt="Dropdown preview" src="components-overview/dropdown.png"></div></div></a><a href="../?path=/docs/components-editable-field--documentation#storybook-docs" aria-label="Editable-Field" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Editable-Field</b><div class="divider"></div><div class="img-container"><img alt="Editable-Field preview" src="components-overview/editable-field.png"></div></div></a><a href="../?path=/docs/components-field--documentation#storybook-docs" aria-label="Field" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Field</b><div class="divider"></div><div class="img-container"><img alt="Field preview" src="components-overview/field.png"></div></div></a><a href="../?path=/docs/components-footer--documentation#storybook-docs" aria-label="Footer" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Footer</b><div class="divider"></div><div class="img-container"><img alt="Footer preview" src="components-overview/footer.png"></div></div></a><a href="../?path=/docs/components-form-field--documentation#storybook-docs" aria-label="Form-Field" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Form-Field</b><div class="divider"></div><div class="img-container"><img alt="Form-Field preview" src="components-overview/form-field.png"></div></div></a><a href="./?path=/docs/components-ds-communication-galactic--documentation#storybook-docs" aria-label="Galactic" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Galactic (communication)</b><div class="divider"></div><div class="img-container"><img alt="Galactic preview" src="components-overview/galactic.png"></div></div></a><a href="../?path=/docs/components-grid--documentation#storybook-docs" aria-label="Grid" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Grid</b><div class="divider"></div><div class="img-container"><img alt="Grid preview" src="components-overview/grid.png"></div></div></a><a href="../?path=/docs/components-header--documentation#storybook-docs" aria-label="Header" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Header (business)</b><div class="divider"></div><div class="img-container"><img alt="Header preview" src="components-overview/header.png"></div></div></a><a href="../?path=/docs/components-horizontalstepper--documentation#storybook-docs" aria-label="Horizontal Stepper" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Horizontal-Stepper</b><div class="divider"></div><div class="img-container"><img alt="Horizontal Stepper preview" src="components-overview/horizontalstepper.png"></div></div></a><a href="../?path=/docs/components-input--documentation#storybook-docs" aria-label="Input" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Input</b><div class="divider"></div><div class="img-container"><img alt="Input preview" src="components-overview/input.png"></div></div></a><a href="../?path=/docs/components-list-item--documentation#storybook-docs" aria-label="List-Item" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>List-Item</b><div class="divider"></div><div class="img-container"><img alt="List-Item preview" src="components-overview/list-item.png"></div></div></a><a href="../?path=/docs/components-mat-icon--documentation#storybook-docs" aria-label="Mat-Icon" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Mat-Icon</b><div class="divider"></div><div class="img-container"><img alt="Mat-Icon preview" src="components-overview/mat-icon.png"></div></div></a><a href="../?path=/docs/components-modal--documentation#storybook-docs" aria-label="Modal" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Modal</b><div class="divider"></div><div class="img-container"><img alt="Modal preview" src="components-overview/modal.png"></div></div></a><a href="../?path=/docs/components-native-select--documentation#storybook-docs" aria-label="Native-Select" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Native-Select</b><div class="divider"></div><div class="img-container"><img alt="Native-Select preview" src="components-overview/native-select.png"></div></div></a><a href="../?path=/docs/components-nav--documentation#storybook-docs" aria-label="Nav" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Nav (business)</b><div class="divider"></div><div class="img-container"><img alt="Nav preview" src="components-overview/nav.png"></div></div></a><a href="../?path=/docs/components-progress-bar--documentation#storybook-docs" aria-label="Progress-Bar" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Progress-Bar</b><div class="divider"></div><div class="img-container"><img alt="Progress-Bar preview" src="components-overview/progress-bar.png"></div></div></a><a href="../?path=/docs/components-progress-radial--documentation#storybook-docs" aria-label="Progress-Radial" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Progress-Radial</b><div class="divider"></div><div class="img-container"><img alt="Progress-Radial preview" src="components-overview/progress-radial.png"></div></div></a><a href="./?path=/docs/components-radio-group--documentation#storybook-docs" aria-label="Radio" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Radio</b><div class="divider"></div><div class="img-container"><img alt="Radio preview" src="components-overview/radio.png"></div></div></a><a href="../?path=/docs/components-select--documentation#storybook-docs" aria-label="Select" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Select</b><div class="divider"></div><div class="img-container"><img alt="Select preview" src="components-overview/select.png"></div></div></a><a href="../?path=/docs/components-skeleton--documentation#storybook-docs" aria-label="Skeleton" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Skeleton</b><div class="divider"></div><div class="img-container"><img alt="Skeleton preview" src="components-overview/skeleton.gif"></div></div></a><a href="../?path=/docs/components-spinner--documentation#storybook-docs" aria-label="Spinner" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Spinner</b><div class="divider"></div><div class="img-container"><img alt="Spinner preview" src="components-overview/spinner.gif"></div></div></a><a href="../?path=/docs/components-switch--documentation#storybook-docs" aria-label="Switch" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Switch</b><div class="divider"></div><div class="img-container"><img alt="Switch preview" src="components-overview/switch.png"></div></div></a><a href="../?path=/docs/components-tabs--documentation#storybook-docs" aria-label="Tabs" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Tabs</b><div class="divider"></div><div class="img-container"><img alt="Tabs preview" src="components-overview/tabs.png"></div></div></a><a href="../?path=/docs/components-textarea--documentation#storybook-docs" aria-label="Textarea" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Textarea</b><div class="divider"></div><div class="img-container"><img alt="Textarea preview" src="components-overview/textarea.png"></div></div></a><a href="../?path=/docs/components-tooltip--documentation#storybook-docs" aria-label="Tooltip" class="sbdocs sbdocs-a css-ajfpqr"><div class="display-card"><b>Tooltip</b><div class="divider"></div><div class="img-container"><img alt="Tooltip preview" src="components-overview/tooltip.png"></div></div></a></div></div></div></div><script>window['CONFIG_TYPE'] = "PRODUCTION";
+          
+      
+          
+            window['LOGLEVEL'] = "info";
+          
+      
+          
+            window['FRAMEWORK_OPTIONS'] = {};
+          
+      
+          
+      
+          
+            window['FEATURES'] = {"warnOnLegacyHierarchySeparator":true,"buildStoriesJson":false,"storyStoreV7":true,"argTypeTargetsV7":true,"legacyDecoratorFileOrder":false};
+          
+      
+          
+      
+          
+            window['STORIES'] = [{"titlePrefix":"","directory":"./stories","files":"**/*.stories.mdx","importPathMatcher":"^\\.[\\\\/](?:stories(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.mdx)$"},{"titlePrefix":"","directory":"./stories","files":"**/**.mdx","importPathMatcher":"^\\.[\\\\/](?:stories(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)[^/]*?\\.mdx)$"},{"titlePrefix":"","directory":"./stories","files":"**/*.stories.@(js|jsx|ts|tsx)","importPathMatcher":"^\\.[\\\\/](?:stories(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(js|jsx|ts|tsx))$"}];
+          
+      
+          
+            window['DOCS_OPTIONS'] = {"defaultName":"Documentation","autodocs":true};</script><script type="module">import './sb-preview/runtime.js';
+
+      
+      import './runtime~main.b5499c5b.iframe.bundle.js';
+      
+      import './7426.a65921c4.iframe.bundle.js';
+      
+      import './main.c1f2a085.iframe.bundle.js';</script></body></html>
