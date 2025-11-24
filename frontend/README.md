@@ -1,73 +1,65 @@
-# React + TypeScript + Vite
+# Frontend AFA (React + Vite + TS)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Application front qui consomme l’API AFA (health, futures endpoints) et s’appuie sur Vite pour le dev et le build.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Démarrage rapide (dev)
+```bash
+cd frontend
+npm install
+cp .env.example .env   # adapter VITE_API_BASE_URL si besoin
+npm run dev             # http://localhost:3000 par défaut
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Configuration
+- **Variables d’environnement (fichier `frontend/.env`)** :
+  ```bash
+  VITE_API_BASE_URL=http://localhost:3001/api
+  VITE_LOG_LEVEL=info        # trace | debug | info | warn | error
+  ```
+  - Les variables Vite doivent commencer par `VITE_` pour être exposées au client.
+  - `.env` n’est pas committé. `.env.example` fournit le gabarit.
+- **Hors prod** : garder `VITE_API_BASE_URL` sur le backend local (3001) et un `VITE_LOG_LEVEL` verbeux (info/debug).
+- **Prod** : injecter les variables via l’environnement/CI/CD ou via un `.env` monté au build, avec l’URL du backend exposé publiquement et un niveau de log plus sobre (info/warn).
+- **Version affichée** : le footer affiche automatiquement `AFA front vX.Y.Z` via la constante `__APP_VERSION__` injectée au build depuis le `package.json` (pas de saisie manuelle).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Ops
+- **Health côté front** : le front déclenche un ping au démarrage vers `${VITE_API_BASE_URL}/health` et logue le résultat dans la console navigateur. 
+- **Logs front** : wrapper léger (`src/lib/logger.ts`) sur `console.*` avec niveaux (trace/debug/info/warn/error) contrôlés par `VITE_LOG_LEVEL`.
+- **Build** :
+  ```bash
+  npm run build   # génère dist/
+  npm run preview # sert le build sur http://localhost:4173
+  ```
+- **Serveur de dev** : `npm run dev` lance Vite (HMR) sur 3000. Les logs sont visibles dans la console navigateur et dans la console Vite.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### RunBooks (copier-coller)
+- **Démarrer en dev**
+  ```bash
+  cd frontend
+  npm install
+  cp .env.example .env
+  npm run dev
+  ```
+- **Changer l’URL du backend (ex: staging)**
+  ```bash
+  # dans frontend/.env
+  VITE_API_BASE_URL=https://api-staging.example.com/api
+  npm run dev
+  ```
+- **Vérifier le health backend depuis le front**
+  ```bash
+  # lancer le front puis regarder la console navigateur :
+  # [INFO] Health backend OK en XXXms
+  ```
+- **Build + prévisualisation locale**
+  ```bash
+  cd frontend
+  npm run build
+  npm run preview
+  ```
+
+## Bonnes pratiques
+- Ne pas committer le `.env` (seul `.env.example` reste versionné).
+- Garder `VITE_API_BASE_URL` cohérent avec l’instance backend ciblée.
+- Régler `VITE_LOG_LEVEL` sur `info` ou `warn` en prod pour limiter le bruit.
+- Ajouter de futurs endpoints front → back en réutilisant l’URL base et en loguant les erreurs côté front.

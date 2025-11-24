@@ -1,6 +1,6 @@
 import React from "react";
 import HeaderAfa from "../components/HeaderAfa";
-import FooterContact from "../components/FooterContact";
+import Footer from "../components/Footer";
 import CtaTile from "../components/CtaTile";
 
 const Home: React.FC = () => {
@@ -25,7 +25,7 @@ const Home: React.FC = () => {
         </div>
       </main>
 
-      <FooterContact
+      <Footer
         contactHref="mailto:david.sissoko@sncf.fr"
         ariaLabel="Contacter le support AFA"
       />

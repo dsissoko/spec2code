@@ -13,16 +13,23 @@ Ce dossier contiendra l’API REST (Node.js/Express) qui pilote la saisie des de
    ```bash
    npm install
    ```
-2. Créer un fichier `.env` à la racine du projet (même niveau que `backend/`), par exemple :
+2. Créer un fichier `backend/.env` (non committé), par exemple :
    ```bash
    # Connexion PostgreSQL (exemple fourni)
    DATABASE_URL=postgres://postgres:changeme@localhost:5433/AFA_DB
    # Port HTTP de l’API
    PORT=3001
+   # Logs
+   LOG_LEVEL=info
+   NODE_ENV=development
+   # Nom d'environnement fonctionnel (affiché dans / et /api/info)
+   APP_ENV=dev
+   # CORS front dev
+   CORS_ORIGIN=http://localhost:3000
    ```
    - `DATABASE_URL` est lu par Sequelize (format standard PostgreSQL).
    - `PORT` sera utilisé par Express (par défaut 3001 si non défini).
-3. Appliquer les migrations et seeders (depuis la racine ou `backend/`, avec `DATABASE_URL` exporté ou dans `.env`) :
+3. Appliquer les migrations et seeders (depuis `backend/`, avec `DATABASE_URL` dans l’environnement ou le `.env`) :
    ```bash
    npx sequelize-cli db:migrate
    npx sequelize-cli db:seed:all   # optionnel, pour charger les environnements DEV/INT/QUAL/REC/PREPROD/PROD
@@ -45,6 +52,67 @@ Le backend se connecte à PostgreSQL en lisant `DATABASE_URL`. Le schéma est g�
 - Le fichier `backend/src/config/config.js` (Sequelize) doit lire `process.env.DATABASE_URL` pour les environnements `development` et `production`.
 - Si le `.env` contient `DATABASE_URL`, `sequelize-cli` et l’API l’utiliseront automatiquement.
 - Pas d’autres fichiers secrets : pas de credentials en dur, pas de `.env` committé.
+
+## Configuration (prod vs hors prod)
+- **Hors prod (dev/int)** :
+  ```bash
+  # backend/.env
+  DATABASE_URL=postgres://postgres:changeme@localhost:5433/AFA_DB
+  PORT=3001
+  LOG_LEVEL=info
+  NODE_ENV=development
+  APP_ENV=dev
+  CORS_ORIGIN=http://localhost:3000
+  ```
+  Pretty logs auto (pino-pretty) si `NODE_ENV` ≠ production.
+- **Prod** : variables injectées par l’environnement (pas de fichier) :
+  ```bash
+  export DATABASE_URL=postgres://user:pass@host:5432/db
+  export PORT=3001
+  export LOG_LEVEL=info   # info ou warn en prod
+  export NODE_ENV=production
+  export APP_ENV=prod      # staging/preprod/prod
+  export CORS_ORIGIN=https://front.domaine.tld
+  ```
+  Logs en JSON compact sur stdout/stderr pour la collecte.
+
+`.env.example.bak` fournit un exemple minimal : duplique-le en `.env` pour ton poste, ne le commit pas.
+
+## Ops
+- **Santé** : `curl http://localhost:3001/api/health` (répond OK si API up et DB accessible).
+- **Logs** : un log par requête (méthode, URL, statut, durée, reqId). Niveaux via `LOG_LEVEL`. Pretty en dev, JSON en prod.
+- **Migrations** : jamais auto au start. Utiliser `npx sequelize-cli db:migrate` avant de lancer l’API sur une base fraîche ou après pull.
+- **Seeders** : `npx sequelize-cli db:seed:all` pour charger les environnements MQ de référence.
+- **Containers** : passer les variables via l’environnement. Healthcheck Docker sur `/api/health`. Logs collectés via stdout/stderr.
+
+### RunBooks (copier-coller)
+- **Démarrer en dev** :
+  ```bash
+  cd backend
+  npm install
+  cp .env.example.bak .env   # adapter DATABASE_URL, LOG_LEVEL, etc.
+  npx sequelize-cli db:migrate
+  npx sequelize-cli db:seed:all
+  npm start
+  ```
+- **Vérifier la santé** :
+  ```bash
+  curl -i http://localhost:3001/api/health
+  ```
+- **Appliquer migrations** :
+  ```bash
+  cd backend
+  npx sequelize-cli db:migrate
+  npx sequelize-cli db:migrate:status
+  ```
+- **Changer le niveau de log (ex: debug provisoire)** :
+  ```bash
+  LOG_LEVEL=debug npm start
+  ```
+- **CORS front local custom** :
+  ```bash
+  CORS_ORIGIN=http://localhost:4173 npm start
+  ```
 
 ## Bonnes pratiques
 - Toujours lancer les migrations avant de démarrer l’API sur une nouvelle base ou après un pull contenant de nouvelles migrations.

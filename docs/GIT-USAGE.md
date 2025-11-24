@@ -59,12 +59,42 @@ git push -u origin feature/ma-feature
 - Merge dans `main` quand c’est validé.
 - Tag la branche main par exemple :
 
-'''bash
+```bash
 git tag -a v0.2.0 -m "v0.2.0"
 git push origin v0.2.0
-'''
+```
 
 - Décide de la gestion/suppression des branches distantes (le développeur ne les supprime pas).
+
+### Routine de version applicative (backend/front)
+- Juste avant la release : bumper la version dans les `package.json` concernés (backend, frontend si applicable) avec `npm version`.
+- Exemple release patch backend uniquement :
+  ```bash
+  cd backend
+  npm version patch   # met à jour package.json et package-lock.json, crée un commit et un tag vX.Y.Z
+  git push origin HEAD --tags
+  ```
+- Exemple release patch frontend uniquement :
+  ```bash
+  cd frontend
+  npm version patch   # met à jour package.json et package-lock.json, crée un commit et un tag vX.Y.Z
+  git push origin HEAD --tags
+  ```
+- Exemple release coordonnée front + back (monorepo) :
+  ```bash
+  cd backend && npm version minor && cd ..
+  cd frontend && npm version minor && cd ..
+  git add backend/package*.json frontend/package*.json
+  git commit -m "chore: bump versions"
+  git tag -a v0.3.0 -m "v0.3.0"
+  git push origin HEAD --tags
+  ```
+- Toujours tagger sur le commit qui contient le bump de version. Le build/artefact doit partir du tag.
+- Les versions affichées en runtime proviennent automatiquement des `package.json` : côté front (constante injectée par Vite), côté back (/api/info et page racine). Pas de saisie manuelle dans le code ou le .env.
+
+### Environnements (backend)
+- `NODE_ENV` est binaire pour Node/Express : `production` active les optimisations (logs JSON, mode prod). Toute autre valeur est considérée comme dev.
+- `APP_ENV` sert à nommer l’environnement fonctionnel (dev/staging/preprod/prod) et est affiché dans `/` et `/api/info`. Laisser `NODE_ENV=production` en staging/preprod/prod pour garder le comportement prod, mais ajuster `APP_ENV` selon le contexte.
 
 ## Git tips
 

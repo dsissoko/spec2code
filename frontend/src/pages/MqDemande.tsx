@@ -1,6 +1,6 @@
 import React from "react";
 import HeaderAfa from "../components/HeaderAfa";
-import FooterContact from "../components/FooterContact";
+import Footer from "../components/Footer";
 import { WcsBreadcrumb, WcsBreadcrumbItem, WcsCard } from "wcs-react";
 
 const MqDemande: React.FC = () => {
@@ -29,7 +29,7 @@ const MqDemande: React.FC = () => {
         </WcsCard>
       </main>
 
-      <FooterContact
+      <Footer
         contactHref="mailto:david.sissoko@sncf.fr"
         ariaLabel="Contacter le support AFA"
       />

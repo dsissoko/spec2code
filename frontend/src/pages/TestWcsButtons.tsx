@@ -1,6 +1,6 @@
 import React from "react";
 import HeaderAfa from "../components/HeaderAfa";
-import FooterContact from "../components/FooterContact";
+import Footer from "../components/Footer";
 import { WcsBadge, WcsButton, WcsBreadcrumb, WcsBreadcrumbItem } from "wcs-react";
 
 const TestWcsButtons: React.FC = () => {
@@ -66,7 +66,7 @@ const TestWcsButtons: React.FC = () => {
           <WcsBreadcrumbItem aria-current="page">Détail flux</WcsBreadcrumbItem>
         </WcsBreadcrumb>
       </main>
-      <FooterContact
+      <Footer
         contactHref="mailto:david.sissoko@sncf.fr"
         ariaLabel="Contacter le support AFA"
       />
