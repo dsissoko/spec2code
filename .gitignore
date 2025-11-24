@@ -6,6 +6,9 @@ build/
 .env
 .env.*
 
+# Codex local traces
+.codex/
+
 # Tooling/editor
 .DS_Store
 Thumbs.db
