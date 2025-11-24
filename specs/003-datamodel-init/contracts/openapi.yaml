@@ -1,0 +1,23 @@
+openapi: 3.0.3
+info:
+  title: AFA Backend minimal - API de référence
+  version: "0.1.0"
+  description: |
+    API REST minimale (prototype) pour le backend AFA. Port par défaut 3001,
+    CORS autorisé pour http://localhost:3000.
+servers:
+  - url: http://localhost:3001/api
+paths:
+  /health:
+    get:
+      summary: Vérifie l’état du service
+      responses:
+        '200': { description: OK }
+components:
+  schemas:
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+          example: ok
