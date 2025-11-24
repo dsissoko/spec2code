@@ -19,8 +19,9 @@ Toutes les specs d’API Speckit (api-*) doivent être compatibles avec une impl
 ### 1.2 Frontend
 
 - React + TypeScript
-- Vite (dev server + build)
+- Vite (dev server + build), port de dev par défaut 3000
 - WCS – SNCF Web Component System Référence : https://wcs.dev.sncf/?path=/docs/documentation-introduction--documentation : l'ensemble des informations relatives à WCS est disponible dans .specify/support/wcs
+- Router : navigation gérée via un routeur React standard (ex. React Router) pour les pages internes
 
 Contraintes UI :
 
@@ -57,6 +58,7 @@ Le dépôt doit respecter l’arborescence suivante :
 - Application React + Vite + TypeScript
 - Pages et composants
 - Intégration WCS
+- Assets communs (ex. logos) placés sous `frontend/public/assets/`
 - Appels aux APIs définies dans les specs Speckit
 
 ### 2.3 database/

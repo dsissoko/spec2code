@@ -5,6 +5,18 @@
 **Status**: Draft  
 **Input**: User description: "$ARGUMENTS"
 
+## Garde-fous Constitution AFA (ne pas supprimer)
+
+- Langue : tout le contenu est rédigé en français (code/identifiants en anglais admis).
+- UX cible : répond aux besoins PDD (usage expert, rapidité, clarté, peu de friction).
+- Stack imposée : backend Node.js REST/JSON, frontend React + TypeScript + Vite avec composants
+  WCS, base PostgreSQL via Sequelize ; aucune autre stack sans dérogation validée.
+- Conventions : respecter `specs/spec-convention.md` et `specs/technical-conventions.md`
+  (structure `specs/NNN-<increment>/`, user stories indépendantes, critères Given/When/Then,
+  tests identifiés uniquement si demandé dans la spec/plan, traçabilité FR/SC).
+- UI : pour les écrans, utiliser les composants WCS (wcs-input, wcs-select, wcs-button, etc.) en
+  s’appuyant sur `.specify/support/wcs`.
+
 ## User Scenarios & Testing *(mandatory)*
 
 <!--

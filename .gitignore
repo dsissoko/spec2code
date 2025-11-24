@@ -1,0 +1,25 @@
+# Node/TypeScript (frontend)
+node_modules/
+dist/
+build/
+*.log
+.env
+.env.*
+
+# Codex local traces
+.codex/
+
+# Tooling/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.tmp
+
+# Archives/artefacts locaux
+*.bak
+*Zone.Identifier
+
+# Echanges IA / fichiers temporaires
+docs/dial/

@@ -8,7 +8,12 @@ description: "Task list template for feature implementation"
 **Input**: Design documents from `/specs/[###-feature-name]/`
 **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
 
-**Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature specification.
+**Tests**: N’ajoutez pas de tâches de test par défaut. Les tests ne sont inclus que si la spec ou le plan les demande explicitement.
+
+**Constitution Guardrails**: tâches rédigées en français, alignées avec la stack imposée (backend
+Node.js REST/JSON, frontend React + TypeScript + Vite + WCS, PostgreSQL/Sequelize) et les
+conventions `specs/spec-convention.md` / `specs/technical-conventions.md`. User stories restent
+indépendantes et traçables (FR/SC).
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
 
