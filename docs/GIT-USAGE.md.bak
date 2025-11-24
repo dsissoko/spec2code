@@ -1,0 +1,58 @@
+# Guide Git — Participation au dépôt AFA
+
+Deux rôles interviennent :
+- **Développeur** : implémente une feature sur sa branche dédiée, pousse son travail et ouvre la PR.
+- **Intégrateur** : relit les PR, demande des ajustements si besoin et merge sur `main` (ou décide du sort des branches).
+
+Les branches de feature peuvent être créées automatiquement par Speckit (si la demande est faite lors du specify) ou manuellement par le développeur. Dans tous les cas, **une seule branche par feature** est utilisée jusqu’à la PR.
+
+## 1) Cloner et préparer le dépôt
+
+```bash
+git clone <url-du-repo>
+cd <dossier>
+git remote -v             # vérifier l’URL
+git branch --show-current # vérifier la branche active (souvent main)
+git status                # état initial propre ?
+```
+
+Création de la branche feature :
+- **Via Speckit** : préciser le nom de la branche à créer (par ex. `feature/ma-feature`) au moment du specify et vérifier qu’elle existe.
+- **Manuel** : depuis `main` à jour (`git pull`), créer et basculer sur la branche :  
+  ```bash
+  git switch -c feature/ma-feature
+  ```
+
+Les itérations se font **uniquement** sur cette branche (pas de branches intermédiaires).
+
+## 2) Développer sur la branche de feature
+
+Travaille, teste, vérifie fréquemment :
+```bash
+git status   # fichiers modifiés ?
+git diff     # relire avant commit
+```
+
+## 3) Commit et push
+
+Quand la feature est prête (ou pour un incrément cohérent) :
+```bash
+git add .                        # ou fichier par fichier
+git status                       # vérifier la staging area
+git commit -m "Message clair"    # ex : "Add project README for AFA"
+git push -u origin feature/ma-feature
+```
+
+## 4) Ouvrir la Pull Request
+
+- Depuis l’UI GitHub/GitLab : comparer `feature/ma-feature` → `main`, décrire le changement et les tests faits.
+- Avec GitHub CLI (optionnel) :  
+  ```bash
+  gh pr create --fill
+  ```
+
+## 5) Rôle de l’intégrateur
+
+- Relit la PR, demande d’éventuelles modifications.
+- Merge dans `main` quand c’est validé.
+- Décide de la gestion/suppression des branches distantes (le développeur ne les supprime pas).***
