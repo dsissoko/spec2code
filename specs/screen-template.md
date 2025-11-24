@@ -3,7 +3,7 @@
 ## 0. Métadonnées
 
 - Incrément : NNN-nom-increment
-- Branche : feat/spec/NNN-nom-increment
+- Branche : NNN-nom-increment
 - Statut : Draft / Reviewed / Approved
 - Dernière mise à jour : AAAA-MM-JJ
 - Auteur / Relecteur(s) : …

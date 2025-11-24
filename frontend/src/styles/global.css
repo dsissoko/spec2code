@@ -82,6 +82,30 @@ main {
   min-height: 160px;
 }
 
+.placeholder-card {
+  width: 100%;
+  max-width: 720px;
+  box-sizing: border-box;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.placeholder-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.placeholder-card__text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
 .breadcrumb {
   width: 100%;
   max-width: 960px;
@@ -124,5 +148,10 @@ main {
   .cta-button {
     width: 220px !important;
     height: 140px !important;
+  }
+
+  .placeholder-card {
+    margin-top: 8px;
+    padding: 20px;
   }
 }

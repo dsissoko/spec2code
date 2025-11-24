@@ -6,17 +6,10 @@ build/
 .env
 .env.*
 
-<<<<<<< HEAD
-# Codex prompts seulement (ignore le reste)
-.codex/*
-!.codex/prompts/
-!.codex/prompts/*.md
-=======
 # Codex prompts only (ignore other Codex artifacts)
 .codex/*
 !.codex/prompts/
 !.codex/prompts/*.md
->>>>>>> 1131dfe (Restore codex prompts and add gitignore)
 
 # Tooling/editor
 .DS_Store

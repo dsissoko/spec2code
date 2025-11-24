@@ -73,7 +73,7 @@ Chaque fichier de spec (écran, API, entité) doit inclure au minimum :
 Bloc en haut de fichier :
 
 - Nom de l’incrément (ex : 001-session-list).
-- Branche Git associée (ex : feat/spec/001-session-list).
+- Branche Git associée (ex : 001-session-list).
 - Statut : Draft / Reviewed / Approved.
 - Date de dernière mise à jour.
 - Auteur / relecteur (optionnel).
@@ -190,6 +190,6 @@ Avant d’approuver une spec :
 
 - Chaque incrément correspond à une branche Git dédiée :
 
-  feat/spec/NNN-nom-increment
+  NNN-nom-increment
 
 - Les templates globaux doivent être utilisés comme référence.
