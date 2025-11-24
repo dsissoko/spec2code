@@ -57,6 +57,13 @@ git push -u origin feature/ma-feature
 
 - Relit la PR, demande d’éventuelles modifications en échangeant directement avec le développeur.
 - Merge dans `main` quand c’est validé.
+- Tag la branche main par exemple :
+
+'''bash
+git tag -a v0.2.0 -m "v0.2.0"
+git push origin v0.2.0
+'''
+
 - Décide de la gestion/suppression des branches distantes (le développeur ne les supprime pas).
 
 ## Git tips
