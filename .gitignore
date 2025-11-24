@@ -16,3 +16,10 @@ Thumbs.db
 .idea/
 *.swp
 *.tmp
+
+# Archives/artefacts locaux
+*.bak
+*Zone.Identifier
+
+# Echanges IA / fichiers temporaires
+docs/dial/
