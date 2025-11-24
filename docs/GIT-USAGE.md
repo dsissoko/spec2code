@@ -57,4 +57,17 @@ git push -u origin feature/ma-feature
 
 - Relit la PR, demande d’éventuelles modifications en échangeant directement avec le développeur.
 - Merge dans `main` quand c’est validé.
-- Décide de la gestion/suppression des branches distantes (le développeur ne les supprime pas).***
+- Décide de la gestion/suppression des branches distantes (le développeur ne les supprime pas).
+
+## Git tips
+
+- **Upstream (tracking branch)** : lie une branche locale à sa branche distante pour éviter de préciser le remote/branche à chaque commande.  
+  - Exemple : à la création/premier push d’une feature :  
+    ```bash
+    git push -u origin feature/ma-feature
+    ```  
+    ou si la branche existe déjà côté remote :  
+    ```bash
+    git branch --set-upstream-to=origin/feature/ma-feature feature/ma-feature
+    ```
+  - Intérêt : ensuite `git push` / `git pull` sans arguments utilisent automatiquement `origin/feature/ma-feature`, ce qui réduit les erreurs et la frappe répétitive.
