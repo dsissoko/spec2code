@@ -1,6 +1,7 @@
 "use strict";
 
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
 const { errorHandler } = require("./middlewares/error");
 const healthRoute = require("./routes/health");
@@ -16,11 +17,14 @@ app.use(cors({ origin: allowedOrigin }));
 app.use(express.json());
 app.use(httpLogger);
 
+// Fichiers statiques (favicon, etc.)
+app.use(express.static(path.join(__dirname, "..", "..", "public")));
+
 // Accueil lisible par un humain avec infos minimales (sans secrets)
 app.get("/", (_req, res) => {
   const info = getAppInfo();
   res.type("html").send(
-    `<html><body><h1>AFA API</h1><p>Version: ${info.version}</p><p>Env: ${info.env.app} (node: ${info.env.node})</p><p>Uptime: ${info.uptimeSeconds}s</p><p><a href="/api/health">/api/health</a> | <a href="/api/info">/api/info</a></p></body></html>`
+    `<html><head><link rel="icon" href="/favicon.ico" /></head><body><h1>AFA API</h1><p>Version: ${info.version}</p><p>Env: ${info.env.app} (node: ${info.env.node})</p><p>Uptime: ${info.uptimeSeconds}s</p><p><a href="/api/health">/api/health</a> | <a href="/api/info">/api/info</a></p></body></html>`
   );
 });
 

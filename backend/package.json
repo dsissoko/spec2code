@@ -1,6 +1,6 @@
 {
   "name": "afa-backend",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Backend minimal AFA (Express + Sequelize + PostgreSQL)",
   "main": "src/index.js",
   "scripts": {
