@@ -1,0 +1,15 @@
+# Node/TypeScript (frontend)
+node_modules/
+dist/
+build/
+*.log
+.env
+.env.*
+
+# Tooling/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.tmp

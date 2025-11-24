@@ -1,50 +1,80 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report
+- Version: 1.0.0 → 1.1.0
+- Modified principles: Organisation des spécifications Speckit (tests désormais créés uniquement si demandés)
+- Added sections: none
+- Removed sections: none
+- Templates requiring updates: ✅ .specify/templates/plan-template.md; ✅ .specify/templates/spec-template.md; ✅ .specify/templates/tasks-template.md
+- Follow-up TODOs: none
+-->
+
+# Constitution AFA (Automatisation des Flux Applicatifs)
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Expérience Utilisateur (UX) ciblée
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+L’application sert des experts métiers PDD (Pilotes De la Demande) et privilégie la rapidité,
+la lisibilité et l’efficacité pour un usage intensif. L’interface est responsive et accessible,
+mais aucun compromis n’est accepté sur la vitesse d’exécution ou la clarté des actions clés.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### II. Langue et communication
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+- Français obligatoire pour toute documentation, spécification, ticket et prompt IA.
+- L’IA doit répondre exclusivement en français.
+- Exceptions limitées : code, identifiants (API, classes, variables) et citations externes.
+- Interdiction de livrer une spécification ou un prompt entièrement en anglais (hors exceptions).
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### III. Conventions de développement et de spécification
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+Le document `specs/spec-convention.md` est la source unique de vérité pour la rédaction des
+specs Speckit (écrans, APIs, entités). En cas de conflit avec un autre document, ses règles
+priment. Toute spec doit être traçable, testable et rédigée en français avec user stories
+indépendantes et scénarios Given/When/Then.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### IV. Invariants techniques
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+- Stack imposée : backend Node.js (LTS) en REST HTTP/JSON avec validation des payloads côté
+  backend ; frontend React + TypeScript + Vite utilisant exclusivement les Web Components WCS
+  (`.specify/support/wcs` comme référence) ; PostgreSQL via Sequelize/CLI pour la base.
+- Les specs Speckit ne doivent proposer que des architectures compatibles avec cette stack.
+- Les écrans décrivent l’intent fonctionnel en WCS (wcs-input, wcs-select, wcs-button, etc.)
+  sans détailler CSS ou logique JS.
+- Les APIs et entités doivent rester cohérentes avec des routes REST Node.js et une base SQL.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Invariants techniques et assets de référence
 
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+- Conventions techniques détaillées dans `specs/technical-conventions.md` : toute dérogation
+  doit être validée par un architecte et documentée.
+- Documentation WCS locale requise dans `.specify/support/wcs` pour guider les écrans React.
+- Dépôt organisé selon l’arborescence imposée (backend/, frontend/, database/, infrastructure/)
+  afin de garantir la cohérence des livrables Speckit avec les cibles de déploiement.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+## Organisation des spécifications Speckit
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+- Dossiers d’incrément : `specs/NNN-<nom-increment>/` regroupant écrans (screen-*), APIs
+  (api-*) et entités (entity-*).
+- Templates obligatoires : `specs/screen-template.md`, `specs/api-template.md`,
+  `specs/entity-template.md` comme base de chaque fichier.
+- Métadonnées minimales : nom d’incrément, branche Git `feat/spec/NNN-<nom>`, statut
+  (Draft/Reviewed/Approved), date de mise à jour, auteur/relecteur optionnel.
+- User stories prioritaires (P1, P2, …), indépendantes, avec critères Given/When/Then et
+  tests identifiés uniquement si la spec ou le plan l’exigent (contrat/integration/données). Aucune
+  génération systématique de tests n’est autorisée. Toute incertitude est marquée
+  `NEEDS CLARIFICATION` et traitée dans `plan.md`.
+- Traçabilité : exigences FR limitées au périmètre de la spec, liens explicites vers APIs,
+  écrans et entités concernés ; historique des changements versionné dans chaque spec.
+
+## Gouvernance
+
+- La présente Constitution est la référence du projet AFA et prime sur tout autre document.
+- Amendements : documentés, approuvés par un architecte, communiqués à l’équipe produit et
+  intégrés dans cette Constitution avec incrément de version sémantique.
+- Contrôles systématiques : toute revue (spec, plan, tâches, code) vérifie la conformité aux
+  principes I-IV, à `specs/spec-convention.md` et à `specs/technical-conventions.md`.
+- Versioning : MAJOR pour changements incompatibles ou suppression de principes, MINOR pour
+  ajout/extension de principe ou section, PATCH pour clarifications sans impact de fond.
+- Tout écart doit être justifié dans le plan ou la spec concernée avec alternative plus simple
+  évaluée ; aucune livraison n’est acceptée si la langue ou la stack s’écartent des principes.
+
+**Version**: 1.1.0 | **Ratified**: 2025-11-23 | **Last Amended**: 2025-11-23

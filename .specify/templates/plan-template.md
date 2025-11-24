@@ -31,7 +31,18 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- Langue : tous les contenus (specs, plan, tasks, prompts) sont rédigés en français ; réponses IA
+  exclusivement en français (code/identifiants peuvent rester en anglais).
+- UX cible PDD : les propositions répondent à un usage expert (rapidité, clarté, peu de friction) et
+  ne dérivent pas vers des patterns B2C génériques.
+- Stack imposée : backend Node.js LTS en REST HTTP/JSON, frontend React + TypeScript + Vite avec
+  composants WCS uniquement ; base PostgreSQL via Sequelize. Aucune dépendance à une autre stack
+  n’est acceptée sans dérogation validée.
+- Conventions : la spec doit suivre `specs/spec-convention.md` et `specs/technical-conventions.md`
+  (structure des incréments `specs/NNN-.../`, user stories indépendantes, critères Given/When/Then,
+  tests identifiés uniquement si demandés par la spec/plan, traçabilité FR/SC).
+- Assets : si l’écran touche l’UI, référencer la doc `.specify/support/wcs` pour les composants
+  (wcs-input, wcs-button, etc.) et aligner les choix UI sur WCS.
 
 ## Project Structure
 
