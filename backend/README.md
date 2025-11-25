@@ -41,6 +41,36 @@ Ce dossier contiendra l’API REST (Node.js/Express) qui pilote la saisie des de
    ```
    L’API écoute sur `http://localhost:3001` (sauf si `PORT` est surchargé).
 
+## Démarrage via Docker Compose (frontend + backend)
+1. À la racine du dépôt, créer `.env` depuis l’exemple :
+   ```bash
+   cp .env.example .env
+   # Remplacer DATABASE_URL par l'URL PostgreSQL 17 externe (PaaS/instance existante).
+   # Les variables POSTGRES_* ne servent qu'au service postgres local du docker compose.
+   ```
+2. Lancer les conteneurs :
+   ```bash
+   docker compose up --build                      # DB externe via DATABASE_URL
+   docker compose --profile localdb up --build    # ajoute Postgres local (17-alpine)
+   ```
+   - Backend : http://localhost:3001 (healthcheck : `/api/health`).
+   - Frontend : http://localhost:3000 (proxy direct vers l’API en local).
+   - Service `postgres` (17-alpine) fourni pour du dev local uniquement, jamais en env réels.
+   - Avec le profil `localdb`, définir `DATABASE_URL=postgres://postgres:postgres@postgres:5432/afa_db` dans `.env`.
+   - Pour viser une base qui tourne sur votre machine hors compose, utilisez `host.docker.internal` comme host (mappé dans le compose).
+   - pgAdmin (profil `localdb`) : http://localhost:8080 avec `PGADMIN_DEFAULT_EMAIL` / `PGADMIN_DEFAULT_PASSWORD` (à mettre dans `.env`).
+3. Migrations/seeders (manuels) depuis les conteneurs :
+   ```bash
+   docker compose run --rm backend npx sequelize-cli db:migrate
+   docker compose run --rm backend npx sequelize-cli db:seed:all   # optionnel
+   docker compose run --rm backend npx sequelize-cli db:migrate:status
+   ```
+4. Arrêt :
+   ```bash
+   docker compose down            # conserve les données postgres locales
+   docker compose down -v         # supprime le volume postgres local
+   ```
+
 ## Base de données (PostgreSQL)
 Le backend se connecte à PostgreSQL en lisant `DATABASE_URL`. Le schéma est géré par des migrations et seeders situés dans `database/`.
 
@@ -81,6 +111,7 @@ Le backend se connecte à PostgreSQL en lisant `DATABASE_URL`. Le schéma est g�
 ## Ops
 - **Santé** : `curl http://localhost:3001/api/health` (répond OK si API up et DB accessible).
 - **Logs** : un log par requête (méthode, URL, statut, durée, reqId). Niveaux via `LOG_LEVEL`. Pretty en dev, JSON en prod.
+- **Absence de pino-pretty en dev** : si le module n’est pas installé, les logs restent en JSON et un avertissement unique est émis au démarrage (reqId/serializers inchangés).
 - **Migrations** : jamais auto au start. Utiliser `npx sequelize-cli db:migrate` avant de lancer l’API sur une base fraîche ou après pull.
 - **Seeders** : `npx sequelize-cli db:seed:all` pour charger les environnements MQ de référence.
 - **Containers** : passer les variables via l’environnement. Healthcheck Docker sur `/api/health`. Logs collectés via stdout/stderr.
