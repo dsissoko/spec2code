@@ -7,19 +7,26 @@ const pinoHttp = require("pino-http");
 const level = process.env.LOG_LEVEL || "info";
 const isDev = process.env.NODE_ENV !== "production";
 
-const logger = isDev
-  ? pino({
-      level,
-      transport: {
-        target: "pino-pretty",
-        options: {
-          colorize: true,
-          translateTime: "SYS:standard",
-          singleLine: true,
-        },
+let transport;
+if (isDev) {
+  try {
+    // Charge pino-pretty seulement s'il est présent (dev). En prod, logs JSON bruts.
+    require.resolve("pino-pretty");
+    transport = {
+      target: "pino-pretty",
+      options: {
+        colorize: true,
+        translateTime: "SYS:standard",
+        singleLine: true,
       },
-    })
-  : pino({ level });
+    };
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.warn("Pretty logger non disponible (pino-pretty absent) — logs JSON utilisés.");
+  }
+}
+
+const logger = transport ? pino({ level, transport }) : pino({ level });
 
 const httpLogger = pinoHttp({
   logger,

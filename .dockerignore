@@ -1,0 +1,21 @@
+# Node / npm
+node_modules
+npm-debug.log
+pnpm-lock.yaml
+.npmrc
+
+# Environnements et secrets (ne pas embarquer)
+.env
+.env.*
+
+# Logs et caches
+logs
+*.log
+*.tmp
+.cache
+
+# Artefacts Vite/React (inutile pour l'image backend)
+frontend/dist
+
+# Divers
+.DS_Store

@@ -13,7 +13,7 @@ npm run dev             # http://localhost:3000 par défaut
 ## Configuration
 - **Variables d’environnement (fichier `frontend/.env`)** :
   ```bash
-  VITE_API_BASE_URL=http://localhost:3001/api
+  VITE_API_BASE_URL=http://backend:3001/api   # service Docker par défaut en mode compose
   VITE_LOG_LEVEL=info        # trace | debug | info | warn | error
   ```
   - Les variables Vite doivent commencer par `VITE_` pour être exposées au client.
