@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, "..", "..", "public")));
 app.get("/", (_req, res) => {
   const info = getAppInfo();
   res.type("html").send(
-    `<html><head><link rel="icon" href="/favicon.ico" /></head><body><h1>AFA API</h1><p>Version: ${info.version}</p><p>Env: ${info.env.app} (node: ${info.env.node})</p><p>Uptime: ${info.uptimeSeconds}s</p><p><a href="/api/health">/api/health</a> | <a href="/api/info">/api/info</a></p></body></html>`
+    `<html><head><title>AFA backend</title><link rel="icon" href="/favicon.ico" /></head><body><h1>AFA backend</h1><p>Version: ${info.version}</p><p>Env: ${info.env.app} (node: ${info.env.node})</p><p>Uptime: ${info.uptimeSeconds}s</p><p><a href="/api/health">/api/health</a> | <a href="/api/info">/api/info</a></p></body></html>`
   );
 });
 

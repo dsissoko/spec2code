@@ -23,10 +23,12 @@ Thumbs.db
 # Archives/artefacts locaux
 *.bak
 *Zone.Identifier
+*.drawio.dtmp
 
-# Echanges IA / fichiers temporaires
+# Documentation : tout ignorer sauf les fichiers explicitement conservés
+/docs/*
+!/docs/GIT-USAGE.md
+!/docs/MQ-BRIEF.md
 docs/dial/
-
-# Documents locaux à ignorer
 docs/*.pdf
 docs/*.drawio

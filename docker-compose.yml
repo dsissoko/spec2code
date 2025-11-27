@@ -1,8 +1,8 @@
 services:
   backend:
     build:
-      context: .
-      dockerfile: backend/Dockerfile
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
       - "3001:3001"
     extra_hosts:
@@ -42,6 +42,8 @@ services:
       - localdb
     ports:
       - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data      
     env_file:
       - .env
     environment:
@@ -54,8 +56,6 @@ services:
       timeout: 5s
       retries: 5
       start_period: 10s
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
 
   pgadmin:
     image: dpage/pgadmin4:8
